@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
     tf
 )
 find_package (Eigen3 REQUIRED NO_MODULE)
+find_package (SDL2 REQUIRED)
 
 catkin_package()
 
@@ -32,6 +33,7 @@ set(CMAKE_CXX_FLAGS "-O3 -fPIC")
 include_directories(
     include
     ${catkin_INCLUDE_DIRS}
+    ${SDL2_INCLUDE_DIRS}
     ${CMAKE_SOURCE_DIR}/unitree_legged_sdk/include
 )
 
@@ -56,6 +58,9 @@ add_dependencies(real_robot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTE
 add_executable(legged_twist src/legged_twist.cpp)
 target_link_libraries(legged_twist ${catkin_LIBRARIES})
 add_dependencies(legged_twist ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} Eigen3::Eigen)
+
+add_executable(sdl_gamepad src/sdl_gamepad.cpp)
+target_link_libraries(sdl_gamepad ${catkin_LIBRARIES} ${SDL2_LIBRARIES})
 
 # add_executable(example_walk src/exe/example_walk.cpp)
 # target_link_libraries(example_walk ${EXTRA_LIBS} ${catkin_LIBRARIES})

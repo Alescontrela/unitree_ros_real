@@ -1,0 +1,12 @@
+<launch>
+  <arg name="deadzone" default="0.05" />
+  <arg name="rate_hz"  default="100" />
+
+  <node pkg="unitree_legged_real" type="sdl_gamepad" name="sdl_gamepad" output="screen">
+    <param name="deadzone" value="$(arg deadzone)" />
+    <param name="rate_hz"  value="$(arg rate_hz)" />
+    <param name="auto_repeat" value="true" />
+    <param name="repeat_timeout" value="0.1" />
+    <remap from="joy" to="/joy" />
+  </node>
+</launch>

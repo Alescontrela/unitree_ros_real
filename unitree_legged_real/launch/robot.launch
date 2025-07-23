@@ -26,6 +26,7 @@
     <arg name="image_width" default="640"/>
     <arg name="image_height" default="480"/>
     <arg name="depth_filter" default="spatial,temporal,hole_filling"/>
+    <arg name="publish_gamepad" default="false"/>
 
     <group if="$(eval arg('func') == 'full')">
         <node name="$(arg robot_namespace)" pkg="unitree_legged_real" type="real_robot" output="$(arg output)" args="$(arg robot_namespace)">
@@ -61,6 +62,10 @@
             <arg name="image_width" value="$(arg image_width)"/>
             <arg name="image_height" value="$(arg image_height)"/>
             <arg name="filter" value="$(arg depth_filter)"/>
+        </include>
+
+        <include file="$(find unitree_legged_real)/launch/gamepad.launch" if="$(eval arg('publish_gamepad'))">
+            <arg name="robot_namespace" value="$(arg robot_namespace)"/>
         </include>
     </group>
 
