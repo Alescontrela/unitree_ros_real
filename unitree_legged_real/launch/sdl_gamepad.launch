@@ -5,7 +5,7 @@
 
   <group ns="$(arg robot_namespace)">
     <node pkg="unitree_legged_real"
-          type="sdl_gamepad_node"
+          type="sdl_gamepad"
           name="sdl_gamepad"
           output="screen">
       <param name="deadzone" value="$(arg deadzone)" />
