@@ -31,6 +31,16 @@
             <arg name="filters" value="$(arg filter)"/>
         </include>
     </group>
+    <group if="$(eval arg('camera_mode') == 'rgb')">
+        <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+            <arg name="camera" value="$(arg robot_namespace)/camera"/>
+            <arg name="enable_color" value="true"/>
+            <arg name="enable_depth" value="false"/>
+            <arg name="color_fps" value="$(arg image_fps)"/>
+            <arg name="color_width" value="$(arg image_width)"/>
+            <arg name="color_height" value="$(arg image_height)"/>
+        </include>
+    </group>
     <group if="$(eval arg('camera_mode') == 'pointcloud')">
         <include file="$(find realsense2_camera)/launch/rs_rgbd.launch">
             <arg name="camera" value="$(arg robot_namespace)/camera"/>
