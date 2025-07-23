@@ -64,7 +64,7 @@
             <arg name="filter" value="$(arg depth_filter)"/>
         </include>
 
-        <include file="$(find unitree_legged_real)/launch/gamepad.launch" if="$(eval arg('publish_gamepad'))">
+        <include file="$(find unitree_legged_real)/launch/sdl_gamepad.launch" if="$(eval arg('publish_gamepad'))">
             <arg name="robot_namespace" value="$(arg robot_namespace)"/>
         </include>
     </group>
